@@ -3,18 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>learn_java_basic</artifactId>
+        <artifactId>learn_jmm</artifactId>
         <groupId>com.com.luop</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>learn_jmm</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>list_learn</module>
-        <module>learn_callable</module>
-    </modules>
+    <artifactId>learn_callable</artifactId>
 
 
 </project>
