@@ -17,6 +17,7 @@
         <module>learn_juc_auxiliaryClass</module>
         <module>learn_readWriteLock</module>
         <module>learn_threadPool</module>
+        <module>learn_forkJoin</module>
     </modules>
 
 
