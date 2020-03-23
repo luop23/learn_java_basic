@@ -3,19 +3,33 @@ package com.luop;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ForkJoinPool;
-import java.util.concurrent.ForkJoinTask;
-import java.util.concurrent.RecursiveTask;
+import java.util.concurrent.*;
 
 /**
  * 计算0-10000000000的值
  */
 public class ForkJoinDemo {
 
-    public static void main(String[] args) {
-        new Thread(ForkJoinDemo::test1).start();
-        new Thread(ForkJoinDemo::test2).start();
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+//        new Thread(ForkJoinDemo::test1).start();
+//        new Thread(ForkJoinDemo::test2).start();
+        test3();
+    }
+
+    private static void test3() throws ExecutionException, InterruptedException {
+        CompletableFuture future = CompletableFuture.supplyAsync(() -> {
+            System.out.println("异步调用，有返回值");
+            return 8888;
+        });
+        System.out.println("这是主线程2");
+        future.whenComplete((t, u) -> {
+            System.out.println(u);
+            System.out.println(t);
+        }).exceptionally(e -> {
+            System.out.println();
+            return 4444;
+        }).get();
+        System.out.println("这是主线程1");
     }
 
     //forkJoin框架实现
