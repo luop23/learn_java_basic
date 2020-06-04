@@ -1,6 +1,6 @@
 package com.luop.dao;
 
-public class TeacherDaoImpl implements TeacherDao{
+public class TeacherDaoImpl implements TeacherDao {
 
     @Override
     public void teach() {

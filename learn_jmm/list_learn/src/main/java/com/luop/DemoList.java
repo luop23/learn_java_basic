@@ -2,12 +2,14 @@ package com.luop;
 
 import com.google.common.collect.Lists;
 
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class DemoList {
     /**
      * 测试多线程下List线程安全的几种写法
+     *
      * @param args
      */
 
@@ -21,8 +23,8 @@ public class DemoList {
     private static void safe3() {
         List<String> list = new CopyOnWriteArrayList<>();
         for (int i = 1; i <= 30; i++) {
-            new Thread(() ->{
-                list.add(UUID.randomUUID().toString().substring(0,5));
+            new Thread(() -> {
+                list.add(UUID.randomUUID().toString().substring(0, 5));
                 System.out.println(list);
             }).start();
         }
@@ -32,8 +34,8 @@ public class DemoList {
     private static void safe2() {
         List<String> list = Collections.synchronizedList(new ArrayList<>());
         for (int i = 1; i <= 30; i++) {
-            new Thread(() ->{
-                list.add(UUID.randomUUID().toString().substring(0,5));
+            new Thread(() -> {
+                list.add(UUID.randomUUID().toString().substring(0, 5));
                 System.out.println(list);
             }).start();
         }
@@ -43,8 +45,8 @@ public class DemoList {
     private static void safeVector() {
         List<String> vector = new Vector<>();
         for (int i = 1; i <= 30; i++) {
-            new Thread(() ->{
-                vector.add(UUID.randomUUID().toString().substring(0,5));
+            new Thread(() -> {
+                vector.add(UUID.randomUUID().toString().substring(0, 5));
                 System.out.println(vector);
             }).start();
         }
@@ -54,10 +56,11 @@ public class DemoList {
     private static void notSafeList() {
         List<String> list = Lists.newArrayList();
         for (int i = 1; i <= 5; i++) {
-            new Thread(() ->{
-                list.add(UUID.randomUUID().toString().substring(0,5));
+            new Thread(() -> {
+                list.add(UUID.randomUUID().toString().substring(0, 5));
                 System.out.println(list);
             }).start();
         }
+        System.out.println(System.currentTimeMillis());
     }
 }

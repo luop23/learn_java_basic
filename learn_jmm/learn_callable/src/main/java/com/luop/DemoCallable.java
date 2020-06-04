@@ -19,20 +19,20 @@ public class DemoCallable {
          *不管多少个线程调用futureTask，他们始终是调用的一个futureTask实例
          * 所以控制台只会打印一句 我是一条通过实现Callable接口创建的线程，正在执行run方法，线程名 取决去哪条线程先调用
          */
-        new Thread(futureTask,"A线程").start();
-        new Thread(futureTask,"B线程").start();
+        new Thread(futureTask, "A线程").start();
+        new Thread(futureTask, "B线程").start();
         //get()方法必须放在最后执行，防止主线程阻塞
         System.out.println(futureTask.get());  //获取线程返回值
     }
 }
 
 //用实现Callable接口的方式创建线程
-class MyThread implements Callable<String>{
+class MyThread implements Callable<String> {
 
     //重写run方法
     @Override
     public String call() throws Exception {
-        System.out.println(Thread.currentThread().getName()+"-----我是一条通过实现Callable接口创建的线程，正在执行run方法");
+        System.out.println(Thread.currentThread().getName() + "-----我是一条通过实现Callable接口创建的线程，正在执行run方法");
         return "这是真的强大";
     }
 }

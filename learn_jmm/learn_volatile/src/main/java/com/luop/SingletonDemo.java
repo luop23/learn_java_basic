@@ -35,16 +35,17 @@ class Singleton2 {
      * 指令重排后，有可能存在一种情况：singleton对象被分配了内存空间，但是还没有被初始化。这样就会导致某些线程会返回空值对象
      */
     private static volatile Singleton2 singleton = null;
-    private Singleton2(){
+
+    private Singleton2() {
         System.out.println(Thread.currentThread().getName() + "线程\t创建单例对象");
     }
 
     //DCL(Double Check Lock   双重检查锁)
     //双重检查锁机制不一定线程安全，原因是有指令重排的存在。
-    public static Singleton2 getInstance(){
-        if (singleton ==null){
-            synchronized (Singleton2.class){
-                if (singleton == null){
+    public static Singleton2 getInstance() {
+        if (singleton == null) {
+            synchronized (Singleton2.class) {
+                if (singleton == null) {
                     singleton = new Singleton2();
                 }
             }
